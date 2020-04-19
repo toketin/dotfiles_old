@@ -99,7 +99,7 @@ scroll-down = i3wm-wsprev
 ;== Module Location ========================================================
 
 modules-left = arch workspaces google reddit facebook youtube
-modules-right = volume battery network date powermenu
+modules-right = volume network date powermenu
  
 ;== Modules ========================================================
 
@@ -107,7 +107,7 @@ modules-right = volume battery network date powermenu
 type = custom/text
 content = 
 ;alt icons = 
-content-padding = 2
+content-padding = 3
 content-background = ${color.shade1}
 content-foreground = ${color.fg}
 click-left = /home/marco/.config/polybar/rmenu_1
@@ -294,7 +294,8 @@ interval = 30
 label =  %time%
 label-padding = 2
 label-background = ${color.shade3}
-time =  %H:%M 
+;time =  %H:%M 
+time = 
 time-alt =  %Y-%m-%d
 
 [module/powermenu]
