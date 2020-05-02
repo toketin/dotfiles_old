@@ -18,7 +18,8 @@ set $color14      #26a69a
 set $color7       #cfd8dc
 set $color15      #eceff1
 
-set $FOCUS #18A4DB
+#set $FOCUS #18A4DB
+set $FOCUS #FAFAFA
 set $UNFOCUS #127196
 set $BORDERF #3B89B5
 set $BORDERU #00245E
@@ -44,7 +45,7 @@ set $ALT Mod1
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-font pango:Terminus 12px
+font pango:Terminus 14px
 
 #font -*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1
 
@@ -58,7 +59,7 @@ font pango:Terminus 12px
 client.focused 		  	$color12    $BORDERF  $FOCUS    $BORDERF
 client.focused_inactive		$color12    $UNFOCUS  $UNFOCUS  $UNFOCUS
 client.unfocused		$color4     $BORDERU  $UNFOCUS  $BORDERU
-client.urgent			$color5     $FOCUS    $FOCUS    $FOCUS
+client.urgent			$color5     #FF0000    $FOCUS    $FOCUS
 client.background		$UNFOCUS
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -77,25 +78,25 @@ bindsym $mod+y border 1pixel
 bindsym $mod+u border none
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id termite
+bindsym $mod+Return exec --no-startup-id xfce4-terminal
 bindsym $mod+Shift+Return exec xterm -e tmux
 #bindsym $mod+Shift+f exec sh ~/.ranger.sh
 # kill focused window
 bindsym $mod+Shift+q kill
-bindsym $mod+m exec --no-startup-id nautilus
+bindsym $mod+m exec --no-startup-id thunar
 #bindsym $mod+b exec --no-startup-id google-chrome-stable
 #bindsym $mod+b exec --no-startup-id qutebrowser --backend webengine
 bindsym $mod+b exec --no-startup-id firefox
 bindsym $mod+Shift+s exec --no-startup-id keepass --auto-type
 bindsym $mod+Shift+h exec --no-startup-id hexchat
 bindsym $mod+Shift+p exec --no-startup-id thunderbird
-#bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ unmute
-#bindsym XF86AudioLowerVolume exec amixer set Master 5%- unmute
-#bindsym XF86AudioMute exec amixer set Master toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5
+bindsym XF86AudioMute exec --no-startup-id pamixer -t
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master '5%+'
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset  Master '5%-'
-bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+#bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master '5%+'
+#bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset  Master '5%-'
+#bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
@@ -262,16 +263,17 @@ bindsym $mod+r mode "resize"
 # }
 
 ### Autostart
-exec_always --no-startup-id xrandr --output VGA-1 --auto --output LVDS-1 --auto --right-of VGA-1
-exec_always --no-startup-id picom -CGb
-#exec_always --no-startup-id compton --config ~/.config/compton.conf -b
+exec_always --no-startup-id setxkbmap it
+#exec_always --no-startup-id xrandr --output VGA-1 --auto --output LVDS-1 --auto --right-of VGA-1
+#exec_always --no-startup-id picom -CGb
+exec_always --no-startup-id picom
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id xsettingsd
 #exec_always --no-startup-id pulseaudio --start
 exec --no-startup-id dunst -c ~/.config/dunst/dunstrc
-#exec --no-startup-id nitrogen --restore 
-exec_always --no-startup-id feh --bg-fill Immagini/wallhaven-50889.png
-exec --no-startup-id nm-applet
+exec --no-startup-id nitrogen --restore 
+#exec_always --no-startup-id feh --bg-fill Immagini/wallhaven-50889.png
+#exec --no-startup-id nm-applet
 exec_always --no-startup-id telegram-desktop
 #exec --no-startup-id xfce4-power-manager --no-daemon
 exec_always --no-startup-id xss-lock -l -- i3lock -fnec 2E3436
@@ -285,17 +287,19 @@ exec --no-startup-id redshift -l 46.6:12.5
 #for_window [title="Desktop — Plasma"] kill
 # Assign foo to workspaces 
 assign [class="Google-chrome"] 3
-assign [class="firefox"] 2
-assign [class="Hexchat"] 1
+assign [class="firefox"] 1
+assign [class="Hexchat"] 2
 assign [class="konversation"] 2
 assign [class="Nautilus"] 4
 assign [class="dolphin"] 4
-assign [class="TelegramDesktop"] 1
+assign [class="TelegramDesktop"] 2
 
+# Window rules
 #for_window [class="^.*"] border normal
 for_window [class="Pavucontrol"] floating enable
 for_window [class="KeePass2"] floating enable
-
+for_window [class="KeePassXC"] floating enable
+for_window [class = "Firefox"] layout tabbed
 ##############################
 
 # i3-gaps config
