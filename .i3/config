@@ -299,7 +299,7 @@ assign [class="TelegramDesktop"] 2
 for_window [class="Pavucontrol"] floating enable
 for_window [class="KeePass2"] floating enable
 for_window [class="KeePassXC"] floating enable
-for_window [class = "Firefox"] layout tabbed
+for_window [class="firefox"] layout tabbed
 ##############################
 
 # i3-gaps config
